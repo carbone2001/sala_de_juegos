@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SalaDeJuegos"
+    }
+  },
+  "defaultProject": "SalaDeJuegos",
+  "cli": {
+    "analytics": false
+  }
 }
