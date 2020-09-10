@@ -1,1 +1,10 @@
-<p>menu works!</p>
+<span>Breakpoint: {{breakpoint}}</span>
+<mat-grid-list [cols]="breakpoint" rowHeight="1:1" (window:resize)="onResize($event)">
+    <mat-grid-tile> <mat-card><h2>Anagrama</h2></mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card><h2>Priedra Papel Tijera</h2></mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card><h2>Agilidad Aritmetica</h2></mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card><h2>Adivina el Numero</h2></mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card><h2>TaTeTi</h2></mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card><h2>Memotest</h2></mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card><h2>Juego del Alumno</h2></mat-card></mat-grid-tile>
+</mat-grid-list>
