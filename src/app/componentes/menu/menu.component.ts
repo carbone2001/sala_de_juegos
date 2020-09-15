@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SplitInterpolation } from '@angular/compiler';
 
 @Component({
   selector: 'app-menu',
@@ -7,35 +8,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   breakpoint:number;
+  alturaColumnas:string;
   constructor() { }
 
   ngOnInit(): void {
-    if(window.innerWidth <= 1000 && window.innerWidth > 515)
-    {
-      this.breakpoint = 4;
-    }
-    else if(window.innerWidth <= 515)
-    {
-      this.breakpoint = 1;
-    }
-    else
-    {
-      this.breakpoint = 6
-    }
+    this.RedimencionarBotones();
   }
 
   onResize(event) {
-    if(window.innerWidth <= 1000 && window.innerWidth > 515)
+    this.RedimencionarBotones();
+  }
+
+  RedimencionarBotones()
+  {
+    if(window.innerWidth <= 1359 && window.innerWidth > 900)
     {
+      this.alturaColumnas="1:1";
       this.breakpoint = 4;
     }
-    else if(window.innerWidth <= 515)
+    else if(window.innerWidth <= 900 && window.innerWidth > 670)
+    {
+      this.alturaColumnas="1:1";
+      this.breakpoint = 3;
+    }
+    else if(window.innerWidth <= 670 && window.innerWidth > 450)
+    {
+      this.alturaColumnas="1:1";
+      this.breakpoint = 2;
+    }
+    else if(window.innerWidth <= 450)
     {
       this.breakpoint = 1;
+      this.alturaColumnas="1:0.4";
     }
     else
     {
-      this.breakpoint = 6
+      this.alturaColumnas="1:1";
+      this.breakpoint = 6;
     }
   }
 
