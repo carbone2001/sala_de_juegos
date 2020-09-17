@@ -11,11 +11,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
+
+//import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    AcercaDeComponent
   ],
   imports: [
     BrowserModule,
