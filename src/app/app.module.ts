@@ -12,6 +12,19 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
+import { ListaJuegosComponent } from './componentes/lista-juegos/lista-juegos.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AnagramaComponent, DialogAlert } from './componentes/anagrama/anagrama.component';
+import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
+import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
+import { AdivinaNumeroComponent } from './componentes/adivina-numero/adivina-numero.component';
+import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
+import { MemotestComponent } from './componentes/memotest/memotest.component';
+import { JuegoAlumnoComponent } from './componentes/juego-alumno/juego-alumno.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule, MatTextareaAutosize } from '@angular/material/input';
+
+import { MatDialogModule } from '@angular/material/dialog';
 
 //import { HttpClientModule } from '@angular/common/http';
 
@@ -19,7 +32,16 @@ import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
   declarations: [
     AppComponent,
     MenuComponent,
-    AcercaDeComponent
+    AcercaDeComponent,
+    ListaJuegosComponent,
+    AnagramaComponent,
+    PiedraPapelTijeraComponent,
+    AgilidadAritmeticaComponent,
+    AdivinaNumeroComponent,
+    TaTeTiComponent,
+    MemotestComponent,
+    JuegoAlumnoComponent,
+    DialogAlert
   ],
   imports: [
     BrowserModule,
@@ -30,9 +52,15 @@ import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
     MatToolbarModule,
     MatMenuModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    MatDialogModule
+
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass:HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
