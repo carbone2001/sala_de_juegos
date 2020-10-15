@@ -32,7 +32,6 @@ export class ListaJuegosComponent implements OnInit {
       this.opacity += 0.01;
       this.blur -= 0.2;
       ciclos--;
-      console.log(ciclos);
       if(ciclos <= 0)
       {
         clearInterval(intervalo);
@@ -79,14 +78,12 @@ export class ListaJuegosComponent implements OnInit {
     var instanciaIntervalo =  setInterval(()=>{
       this.opacity = opacidadNumero;
       opacidadNumero -= 0.05;
-      console.log(opacidadNumero);
       if(opacidadNumero <= 0)
       {
         this.router.navigateByUrl(url);
         clearInterval(instanciaIntervalo);
-        console.log("murio intervalo");
       }
-    },15);
+    },5);
   }
 
 }

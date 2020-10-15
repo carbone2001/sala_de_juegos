@@ -28,13 +28,12 @@ export class PiedraPapelTijeraComponent implements OnInit {
       this.imgSize -= 1;
       this.opacity += 0.01;
       ciclos--;
-      console.log(ciclos);
       this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoPiedraPapelTijera.png');";
       if(ciclos <= 0)
       {
         clearInterval(intervalo);
       }
-    },10);
+    },5);
   }
 
   OpcionElegida(opcionUsuario: string) {

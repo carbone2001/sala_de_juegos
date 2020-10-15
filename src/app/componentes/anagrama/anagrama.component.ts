@@ -56,13 +56,12 @@ estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity
       this.opacity += 0.01;
       this.blur -= 0.2;
       ciclos--;
-      console.log(ciclos);
       this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoAnagrama.png');";
       if(ciclos <= 0)
       {
         clearInterval(intervalo);
       }
-    },10);
+    },5);
   }
 
   ElegirPalabra()
