@@ -1,1 +1,56 @@
-<p>agilidad-aritmetica works!</p>
+<div align="center" style="background-image: url('assets/imagenAgilidadAritmetica.jpg');background-position: 50%;background-size: cover;height: 100%;">
+    <div style="backdrop-filter: blur(10px);height: 100%;">
+        <br>
+        <mat-card style="width: 50%;margin-top: 10%;min-width: 350px; max-width: 500px;background-color: rgb(219, 219, 219);">
+            <mat-card-header>
+                <table>
+                    <tr>
+                        <td>
+                            <h1>Agilidad Aritmética</h1>
+                        </td>
+                        <td>
+                            <h2> | Tiempo: {{segundos}}</h2>
+                        </td>
+                    </tr>
+                </table>
+                
+            </mat-card-header>
+            <br>
+            <h2>{{operacionStr}}</h2>
+            
+            <form action="">
+                <mat-form-field class="example-full-width">
+                    <input matInput name="numeroIngresado" [(ngModel)]="numeroIngresado" placeholder="Ingrese respuesta">
+                </mat-form-field>
+                <br>
+                <br>
+                <button (click)="CrearOperacion()" mat-raised-button color="secondary">
+                    {{tituloBotonInicio}}
+                </button>
+                <br>
+                <br>
+                <button *ngIf="tituloBotonInicio == 'Buscar otra operación'" (click)="VerificarNumero()" mat-raised-button color="primary" >
+                    Verificar Numero
+                </button>
+                <!--table>
+                    <tr>
+                        <td>
+                            <button (click)="CrearOperacion()" mat-raised-button color="secondary">
+                                {{tituloBotonInicio}}
+                            </button>
+                        </td>
+                        <td >
+                            <button style="width: 100%;" *ngIf="tituloBotonInicio == 'Buscar otra operación'" (click)="VerificarNumero()" mat-raised-button color="primary" >
+                                Verificar Numero
+                            </button>
+                        </td>
+                    </tr>
+                </table-->
+
+                <br>
+                <br>
+                <br>
+            </form>
+        </mat-card>
+    </div>
+</div>

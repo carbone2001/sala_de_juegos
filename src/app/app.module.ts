@@ -23,7 +23,6 @@ import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { JuegoAlumnoComponent } from './componentes/juego-alumno/juego-alumno.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule, MatTextareaAutosize } from '@angular/material/input';
-
 import { MatDialogModule } from '@angular/material/dialog';
 
 //import { HttpClientModule } from '@angular/common/http';

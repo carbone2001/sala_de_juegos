@@ -1,23 +1,27 @@
-<div align="center" style="background-image: url('assets/fondoAnagrama.png');background-position: 50%;background-size: cover;height: 100%;">
-    <br>
-    <mat-card style="width: 50%;margin-top: 10%;min-width: 300px; max-width: 500px;background-color: rgb(219, 219, 219);">
+<div style="background-color: rgb(78, 78, 78);height: 100%;">
+    <div align="center" class="fondo" [style]="estilosAnimaciones">
         <br>
-        <h1 style="font-size: 40px;">{{palabraElegida}}</h1>
-        <br>
-        <form action="">
-            <mat-form-field class="example-full-width">
-                <input matInput name="palabraIngresada" [(ngModel)]="palabraIngresada" placeholder="Ingrese respuesta">
-            </mat-form-field>
+        <div [style.opacity]="opacity">
             <br>
-            <br>
-            <button style="width: 60%;" mat-raised-button (click)="ElegirPalabra()">Cambiar Palabra</button>
-            <br>
-            <br>
-            <button style="width: 60%;" mat-raised-button color="primary" (click)="VerificarPalabra()">Verificar
-                Palabra</button>
-            <br>
-            <br>
-        </form>
-
-    </mat-card>
+            <mat-card style="width: 50%;margin-top: 10%;min-width: 300px; max-width: 500px;">
+                <br>
+                <h1 style="font-size: 40px;">{{palabraElegida}}</h1>
+                <br>
+                <form action="">
+                    <mat-form-field class="example-full-width">
+                        <input matInput name="palabraIngresada" [(ngModel)]="palabraIngresada" placeholder="Ingrese respuesta">
+                    </mat-form-field>
+                    <br>
+                    <br>
+                    <button style="width: 60%;" mat-raised-button (click)="ElegirPalabra()">Cambiar Palabra</button>
+                    <br>
+                    <br>
+                    <button style="width: 60%;" mat-raised-button color="primary" (click)="VerificarPalabra()">Verificar
+                        Palabra</button>
+                    <br>
+                    <br>
+                </form>
+            </mat-card>
+        </div>
+    </div>
 </div>

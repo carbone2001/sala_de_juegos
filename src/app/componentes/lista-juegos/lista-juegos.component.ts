@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-juegos',
@@ -9,10 +10,34 @@ export class ListaJuegosComponent implements OnInit {
 
   breakpoint:number;
   alturaColumnas:string;
-  constructor() { }
+
+  //animaciones
+  opacidadDivPrincipal = "opacity: 1;";
+  opacity: number = 0;
+  blur: number = 20;
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
     this.RedimencionarBotones();
+    this.opacidadDivPrincipal = "opacity: 1;";
+    this.AnimacionDeInicio();
+  }
+
+  AnimacionDeInicio()
+  {
+    var ciclos = 100;
+    var intervalo = setInterval(()=>{
+      this.opacity += 0.01;
+      this.blur -= 0.2;
+      ciclos--;
+      console.log(ciclos);
+      if(ciclos <= 0)
+      {
+        clearInterval(intervalo);
+      }
+    },5);
   }
 
   onResize(event) {
@@ -46,6 +71,22 @@ export class ListaJuegosComponent implements OnInit {
       this.alturaColumnas="1:1";
       this.breakpoint = 6;
     }
+  }
+
+  GenerarTransicion(url:string)
+  {
+    var opacidadNumero = 1;
+    var instanciaIntervalo =  setInterval(()=>{
+      this.opacity = opacidadNumero;
+      opacidadNumero -= 0.05;
+      console.log(opacidadNumero);
+      if(opacidadNumero <= 0)
+      {
+        this.router.navigateByUrl(url);
+        clearInterval(instanciaIntervalo);
+        console.log("murio intervalo");
+      }
+    },15);
   }
 
 }

@@ -33,10 +33,36 @@ export class AnagramaComponent implements OnInit {
 palabraElegida:string;
 palabraRespuesta:string;
 palabraIngresada:string; 
+
+//Animaciones
+imgSize = 500 // (%)
+opacity = 0; // [0-1]
+blur = 90; //[0-20]
+
+estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoAnagrama.png');";
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.ElegirPalabra();
+    this.AnimacionDeInicio();
+  }
+
+  AnimacionDeInicio()
+  {
+    var ciclos = 100;
+    var intervalo = setInterval(()=>{
+      this.imgSize -= 1;
+      this.opacity += 0.01;
+      this.blur -= 0.2;
+      ciclos--;
+      console.log(ciclos);
+      this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoAnagrama.png');";
+      if(ciclos <= 0)
+      {
+        clearInterval(intervalo);
+      }
+    },10);
   }
 
   ElegirPalabra()

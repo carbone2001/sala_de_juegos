@@ -1,1 +1,71 @@
-<p>ta-te-ti works!</p>
+<div class="contenedorPrincipal" style="background-image: url('assets/imagenTateti.jpg');background-position: 50%;background-size: cover;height: 100%;">
+    <div style="backdrop-filter: blur(6px);height: 100%;"  align="center">
+        <br>
+        <mat-card style="width: 80%;margin-top: 10%;height: 80%;max-height: 500px; max-width: 700px;min-width: 50px;">
+            <mat-card-header>
+                <h1 style="color: rgb(156, 156, 156);"><b>TaTeTi</b></h1>
+            </mat-card-header>
+            <mat-card-content>
+                <br>
+                <br>
+                <h2>Seleccione una opción...</h2>
+                <mat-grid-list cols="3" rowHeight="1:1" style="min-width: 300px;max-width: 600px;width: 30%;height: 10%;">
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('A1')" color="primary"> 
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[0].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[0].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('A2')" color="primary">
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[1].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[1].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('A3')" color="primary"> 
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[2].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[2].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('B1')" color="primary"> 
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[3].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[3].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('B2')" color="primary">
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[4].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[4].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon> 
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('B3')" color="primary">
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[5].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[5].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>    
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('C1')" color="primary"> 
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[6].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[6].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('C2')" color="primary"> 
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[7].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[7].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-flat-button class="btnOpciones" (click)="RegistrarOpcion('C3')" color="primary"> 
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[8].marca == 'cruz'" aria-label="Example home icon">clear</mat-icon>
+                            <mat-icon aria-hidden="false" *ngIf="OpcionesDisponibles[8].marca == 'circulo'" aria-label="Example home icon">radio_button_unchecked</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
