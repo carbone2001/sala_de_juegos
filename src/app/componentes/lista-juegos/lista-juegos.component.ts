@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-lista-juegos',
   templateUrl: './lista-juegos.component.html',
@@ -16,7 +17,8 @@ export class ListaJuegosComponent implements OnInit {
   opacity: number = 0;
   blur: number = 20;
   constructor(
-    private router:Router
+    private router:Router,
+
   ) { }
 
   ngOnInit(): void {

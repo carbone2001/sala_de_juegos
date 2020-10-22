@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agilidad-aritmetica',
@@ -23,16 +23,38 @@ export class AgilidadAritmeticaComponent implements OnInit {
   numeroIngresado;
   segundos = 0;
   instanciaReloj;
+
+  //Animaciones
+  imgSize = 400 // (%)
+  opacity = 0; // [0-1]
+  estilosAnimaciones = "background-size: " + this.imgSize + "%;opacity: " + this.opacity + ";background-image: url('assets/imagenAgilidadAritmetica.jpg');";
+
   ngOnInit(): void {
     //this.CrearOperacion();
+    this.AnimacionDeInicio();
+  }
+
+  AnimacionDeInicio()
+  {
+    var ciclos = 100;
+    var intervalo = setInterval(()=>{
+      this.imgSize -= 1;
+      this.opacity += 0.01;
+      ciclos--;
+      this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/imagenAgilidadAritmetica.jpg');";
+      if(ciclos <= 0)
+      {
+        clearInterval(intervalo);
+      }
+    },5);
   }
 
   CrearOperacion() {
     var operando1: number = Math.round(Math.random() * (100 - 0) + 0);
     var operando2: number = Math.round(Math.random() * (100 - 0) + 0);
     var operador = this.operadores[Math.round(Math.random() * (3 - 0) + 0)];
-    this.Calcular(operando1,operando2,operador);
-    this.operacionStr = operando1.toString()+" "+operador+" "+operando2.toString();
+    this.Calcular(operando1, operando2, operador);
+    this.operacionStr = operando1.toString() + " " + operador + " " + operando2.toString();
     this.IniciarReloj();
     this.tituloBotonInicio = "Buscar otra operación";
   }
@@ -54,31 +76,27 @@ export class AgilidadAritmeticaComponent implements OnInit {
     }
   }
 
-  VerificarNumero(){
-    if(this.numeroIngresado == this.respuesta)
-    {
-      this.OpenDialog("Respuesta correcta.","Felicidades!");
+  VerificarNumero() {
+    if (this.numeroIngresado == this.respuesta) {
+      this.OpenDialog("Respuesta correcta.", "Felicidades!");
     }
-    else
-    {
-      this.OpenDialog("La respuesta es: "+this.respuesta,"Incorrecto!");
+    else {
+      this.OpenDialog("La respuesta es: " + this.respuesta, "Incorrecto!");
     }
   }
 
-  IniciarReloj()
-  {
+  IniciarReloj() {
     clearInterval(this.instanciaReloj);
     this.segundos = 0;
-    this.instanciaReloj = setInterval(()=>{
+    this.instanciaReloj = setInterval(() => {
       this.segundos++;
-    },1000);
+    }, 1000);
   }
-  OpenDialog(mensaje:string,cabezera:string)
-  {
+  OpenDialog(mensaje: string, cabezera: string) {
     clearInterval(this.instanciaReloj);
     this.dialog.open(DialogAlert, {
-      data: {mensaje:mensaje, cabezera:cabezera}
-    }).afterClosed().subscribe(()=>{
+      data: { mensaje: mensaje, cabezera: cabezera }
+    }).afterClosed().subscribe(() => {
       this.CrearOperacion();
     })
   }
@@ -87,16 +105,15 @@ export class AgilidadAritmeticaComponent implements OnInit {
 
 @Component({
   templateUrl: 'dialogAlert.html',
-  selector:"dialogAlert"
+  selector: "dialogAlert"
 })
 export class DialogAlert {
   constructor(
     public dialogRef: MatDialogRef<DialogAlert>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
-    CloseDialog()
-    {
-      this.dialogRef.close();
-    }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  CloseDialog() {
+    this.dialogRef.close();
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }

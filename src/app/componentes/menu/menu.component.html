@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" style="background-image: url('assets/backgroundMenu.jpg');background-position: 50%;background-size: cover;">
-    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+    <button *ngIf="botones" mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
         <mat-icon primary>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -11,12 +11,12 @@
         <mat-icon>sentiment_very_satisfied</mat-icon>
         <span>Acerca de</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="CerrarSesion()">
         <mat-icon>power</mat-icon>
         <span>Cerrar Sesion</span>
       </button>
     </mat-menu>
-    <button mat-icon-button routerLink="" class="example-icon">
+    <button *ngIf="botones" mat-icon-button routerLink="" class="example-icon">
         <mat-icon primary>house</mat-icon>
     </button>
     <span class="example-spacer"></span>

@@ -24,7 +24,9 @@ import { JuegoAlumnoComponent } from './componentes/juego-alumno/juego-alumno.co
 import { FormsModule } from '@angular/forms';
 import { MatInputModule, MatTextareaAutosize } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { LoginComponent } from './componentes/login/login.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 //import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -40,7 +42,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     TaTeTiComponent,
     MemotestComponent,
     JuegoAlumnoComponent,
-    DialogAlert
+    DialogAlert,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +57,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     FormsModule,
     MatInputModule,
-    MatDialogModule
-
+    MatDialogModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     {provide: LocationStrategy, useClass:HashLocationStrategy}

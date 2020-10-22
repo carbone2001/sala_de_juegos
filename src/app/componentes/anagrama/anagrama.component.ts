@@ -37,7 +37,6 @@ palabraIngresada:string;
 //Animaciones
 imgSize = 500 // (%)
 opacity = 0; // [0-1]
-blur = 90; //[0-20]
 
 estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoAnagrama.png');";
 
@@ -54,7 +53,6 @@ estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity
     var intervalo = setInterval(()=>{
       this.imgSize -= 1;
       this.opacity += 0.01;
-      this.blur -= 0.2;
       ciclos--;
       this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoAnagrama.png');";
       if(ciclos <= 0)

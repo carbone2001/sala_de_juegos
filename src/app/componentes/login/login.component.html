@@ -1,0 +1,24 @@
+<div style="background-color: rgb(78, 78, 78);height: 100%;" align="center">
+    <br>
+    <br>
+    <mat-card style="max-width: 300px;">
+        <mat-card-header>
+            <h2>Iniciar Sesión</h2>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Correo</mat-label>
+                  <input matInput name="correo" type="email" placeholder="Ingrese correo" [(ngModel)]="correo">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Clave</mat-label>
+                    <input matInput name="clave" type="password" placeholder="Ingrese clave" [(ngModel)]="clave">
+                  </mat-form-field>
+              </form>
+              <br>
+              <button mat-raised-button color="primary" (click)="Verificar()">Ingresar</button>
+        </mat-card-content>
+    </mat-card>
+</div>

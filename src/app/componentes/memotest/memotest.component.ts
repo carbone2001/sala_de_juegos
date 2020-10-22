@@ -1,6 +1,6 @@
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 
 @Component({
@@ -10,9 +10,16 @@ import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dia
 })
 export class MemotestComponent implements OnInit {
 
+  //Animaciones
+  imgSize = 400 // (%)
+  opacity = 0; // [0-1]
+  estilosAnimaciones = "background-size: " + this.imgSize + "%;opacity: " + this.opacity + ";background-image: url('assets/imagenMemotest.jpg');";
+
   constructor(
-    public dialog:MatDialog
-  ) { }
+    public dialog: MatDialog
+  ) {
+    this.AnimacionDeInicio();
+   }
 
   opcionesElegidas = { "opcion1": 0, "opcion2": 0, "cantidad": 0 };
 
@@ -50,6 +57,21 @@ export class MemotestComponent implements OnInit {
     this.AsignarIconos();
   }
 
+  AnimacionDeInicio()
+  {
+    var ciclos = 100;
+    var intervalo = setInterval(()=>{
+      this.imgSize -= 1;
+      this.opacity += 0.01;
+      ciclos--;
+      this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/imagenMemotest.jpg');";
+      if(ciclos <= 0)
+      {
+        clearInterval(intervalo);
+      }
+    },5);
+  }
+
   AsignarIconos() {
     var indiceIconoAleatorio;
     var iconosValidos;
@@ -68,8 +90,6 @@ export class MemotestComponent implements OnInit {
       element.icono = iconosValidos[indiceIconoAleatorio].nombre;
       this.iconos[iconosValidos[indiceIconoAleatorio].index].asignaciones++;
     });
-
-    console.log(this.posiciones);
   }
 
   ElegirOpcion(indice) {
@@ -107,31 +127,28 @@ export class MemotestComponent implements OnInit {
         this.opcionesElegidas.cantidad++;
         console.log("Opciones elegidas:", this.opcionesElegidas);
       }
-      opcionesDisponibles = this.posiciones.filter((posicion)=>{
+      opcionesDisponibles = this.posiciones.filter((posicion) => {
         return posicion.visible != true;
       })
-      if(opcionesDisponibles.length == 0)
-      {
-        this.OpenDialog("partida ganada!","Felicidades!");
+      if (opcionesDisponibles.length == 0) {
+        this.OpenDialog("partida ganada!", "Felicidades!");
         this.ReiniciarJuego();
       }
       //console.log("Array posiciones: ",this.posiciones);
     }
   }
 
-  ReiniciarJuego()
-  {
-    this.posiciones = this.posiciones.map((element)=>{
+  ReiniciarJuego() {
+    this.posiciones = this.posiciones.map((element) => {
       element.visible = false;
       element.icono = "";
       return element;
     });
   }
 
-  OpenDialog(mensaje:string,cabezera:string)
-  {
+  OpenDialog(mensaje: string, cabezera: string) {
     this.dialog.open(DialogAlert, {
-      data: {mensaje:mensaje, cabezera:cabezera}
+      data: { mensaje: mensaje, cabezera: cabezera }
     });
   }
 }
@@ -139,16 +156,15 @@ export class MemotestComponent implements OnInit {
 
 @Component({
   templateUrl: 'dialogAlert.html',
-  selector:"dialogAlert"
+  selector: "dialogAlert"
 })
 export class DialogAlert {
   constructor(
     public dialogRef: MatDialogRef<DialogAlert>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
-    CloseDialog()
-    {
-      this.dialogRef.close();
-    }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  CloseDialog() {
+    this.dialogRef.close();
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

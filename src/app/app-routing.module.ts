@@ -10,42 +10,57 @@ import { AdivinaNumeroComponent } from './componentes/adivina-numero/adivina-num
 import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { JuegoAlumnoComponent } from './componentes/juego-alumno/juego-alumno.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { AutenticacionGuard } from './guards/autenticacion.guard';
 const routes: Routes = [
   {
+    path:"login",
+    component:LoginComponent
+  },
+  {
     path:"listaJuegos",
-    component:ListaJuegosComponent
+    component:ListaJuegosComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"anagrama",
-    component:AnagramaComponent
+    component:AnagramaComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"piedraPapelTijera",
-    component:PiedraPapelTijeraComponent
+    component:PiedraPapelTijeraComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"agilidadAritmetica",
-    component:AgilidadAritmeticaComponent
+    component:AgilidadAritmeticaComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"adivinaNumero",
-    component:AdivinaNumeroComponent
+    component:AdivinaNumeroComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"tateti",
-    component:TaTeTiComponent
+    component:TaTeTiComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"memotest",
-    component:MemotestComponent
+    component:MemotestComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"juegoAlumno",
-    component:JuegoAlumnoComponent
+    component:JuegoAlumnoComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path:"acercaDe",
-    component: AcercaDeComponent
+    component: AcercaDeComponent,
+    canActivate:[AutenticacionGuard]
   },
   {
     path: '',

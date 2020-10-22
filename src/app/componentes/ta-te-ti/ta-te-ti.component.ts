@@ -1,7 +1,7 @@
 import { ɵBrowserPlatformLocation } from '@angular/common';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ta-te-ti',
@@ -16,6 +16,11 @@ export class TaTeTiComponent implements OnInit {
   filaA = { 1: "", 2: "", 3: "" };
   filaB = ["", "", ""];
   filaC = ["", "", ""];
+
+  //Animaciones
+  imgSize = 300 // (%)
+  opacity = 0; // [0-1]
+  estilosAnimaciones = "background-size: " + this.imgSize + "%;opacity: " + this.opacity + ";background-image: url('assets/imagenTateti.jpg');";
 
   //True = opcion disponible
   OpcionesDisponibles = [
@@ -57,6 +62,22 @@ export class TaTeTiComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.AnimacionDeInicio();
+  }
+
+  AnimacionDeInicio()
+  {
+    var ciclos = 100;
+    var intervalo = setInterval(()=>{
+      this.imgSize -= 1;
+      this.opacity += 0.01;
+      ciclos--;
+      this.estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/imagenTateti.jpg');";
+      if(ciclos <= 0)
+      {
+        clearInterval(intervalo);
+      }
+    },5);
   }
 
   RegistrarOpcion(opcion) {
@@ -83,21 +104,21 @@ export class TaTeTiComponent implements OnInit {
         for (let i = 0; i < this.SolucionesPosibles.length; i++) {
           //Necesito 3 variables encontradas para que gane el juego
           this.OpcionesElegidasUsuario.forEach(posicion => {
-              //Busco si las opciones tomadas por el usuario coinciden con algun patron del array de soluciones
-              var resultadoBusqueda = this.SolucionesPosibles[i].find(posicionParam => {
-                posicionParam == posicion;
-                return posicionParam == posicion;
-              })
-              console.log('resultadoBusq:', resultadoBusqueda);
-              if (resultadoBusqueda == posicion) {
-                variablesEncontradas++;
-              }
+            //Busco si las opciones tomadas por el usuario coinciden con algun patron del array de soluciones
+            var resultadoBusqueda = this.SolucionesPosibles[i].find(posicionParam => {
+              posicionParam == posicion;
+              return posicionParam == posicion;
+            })
+            console.log('resultadoBusq:', resultadoBusqueda);
+            if (resultadoBusqueda == posicion) {
+              variablesEncontradas++;
+            }
           })
           console.log('variables encontradas:', variablesEncontradas);
-          console.log('opciones elegidas por usuario:',this.OpcionesElegidasUsuario);
+          console.log('opciones elegidas por usuario:', this.OpcionesElegidasUsuario);
           if (variablesEncontradas >= 3) {// 3 variables encontradas significa que solo hacer un patron ganador. El cual tiene 3 elementos.
             console.log(this.OpcionesElegidasUsuario);
-            this.OpenDialog("Partida ganada!!","Felicidades!");
+            this.OpenDialog("Partida ganada!!", "Felicidades!");
             estadoPartida = 'ganada';
             this.ReiniciarJuego();
             break;
@@ -117,9 +138,8 @@ export class TaTeTiComponent implements OnInit {
       if (estadoPartida == 'en curso') {
         this.RespuestaDeLaComputadora();
       }
-      else if(estadoPartida ==  'empate')
-      {
-        this.OpenDialog("La partida termino en empate. Intentalo de nuevo!","Casi...");
+      else if (estadoPartida == 'empate') {
+        this.OpenDialog("La partida termino en empate. Intentalo de nuevo!", "Casi...");
         this.ReiniciarJuego();
       }
     }
@@ -181,26 +201,24 @@ export class TaTeTiComponent implements OnInit {
           }
         }
         else if (variablesEncontradas >= 3) {
-          this.OpenDialog("Esta vez la maquina fue mas inteligente. Intentalo de nuevo!","Perdiste!");
+          this.OpenDialog("Esta vez la maquina fue mas inteligente. Intentalo de nuevo!", "Perdiste!");
           this.ReiniciarJuego();
           break;
         }
       }
     }
 
-    if(estadoPartida == 'empate')
-    {
-      this.OpenDialog("La partida termino en empate. Intentalo de nuevo!","Casi...");
+    if (estadoPartida == 'empate') {
+      this.OpenDialog("La partida termino en empate. Intentalo de nuevo!", "Casi...");
       this.ReiniciarJuego();
     }
 
 
   }
 
-  OpenDialog(mensaje:string,cabezera:string)
-  {
+  OpenDialog(mensaje: string, cabezera: string) {
     this.dialog.open(DialogAlert, {
-      data: {mensaje:mensaje, cabezera:cabezera}
+      data: { mensaje: mensaje, cabezera: cabezera }
     });
   }
 }
@@ -208,16 +226,15 @@ export class TaTeTiComponent implements OnInit {
 
 @Component({
   templateUrl: 'dialogAlert.html',
-  selector:"dialogAlert"
+  selector: "dialogAlert"
 })
 export class DialogAlert {
   constructor(
     public dialogRef: MatDialogRef<DialogAlert>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
-    CloseDialog()
-    {
-      this.dialogRef.close();
-    }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  CloseDialog() {
+    this.dialogRef.close();
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

@@ -11,7 +11,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   //Animaciones
-  imgSize = 500 // (%)
+  imgSize = 400 // (%)
   opacity = 0; // [0-1]
 
 

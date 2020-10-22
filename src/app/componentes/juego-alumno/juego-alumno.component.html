@@ -1,18 +1,20 @@
-<div align="center" style="background-image: url('assets/imagenJuegoAlumno.jpg');background-position: 50%;background-size: cover;height: 100%;">
-    <div style="backdrop-filter: blur(6px);height: 100%;"  align="center">
-        <br>
-        <mat-card style="width: 70%;margin-top: 10%;min-width: 350px; max-width: 600px;background-color: rgb(219, 219, 219);">
-            <h2>Juego del Alumno | Puntuacion: {{puntuacion}}</h2>
-            <mat-grid-list cols="5" rowHeight="1:1">
-                <div *ngFor="let intento of numerosElegidosUsuario;let indice=index">
-                <mat-grid-tile>
-                        <mat-form-field style="width: 100%;">
-                            <input matInput type="number" [name]="'numero'+indice" [(ngModel)]="intento.numero" [placeholder]="(indice+1)+'° Número'">
-                        </mat-form-field>
-                    </mat-grid-tile>
-                </div>
-            </mat-grid-list>
-            <button mat-flat-button (click)="Verificar()" color="primary">Verificar</button>
-        </mat-card>
-    </div>
+<div style="background-color: rgb(78, 78, 78);height: 100%;">
+    <div align="center" class="fondo" [style]="estilosAnimaciones">
+        <div style="backdrop-filter: blur(6px);height: 100%;"  align="center">
+            <br>
+            <mat-card style="width: 70%;margin-top: 10%;min-width: 350px; max-width: 600px;background-color: rgb(219, 219, 219);">
+                <h2>Juego del Alumno | Puntuacion: {{puntuacion}}</h2>
+                <mat-grid-list cols="5" rowHeight="1:1">
+                    <div *ngFor="let intento of numerosElegidosUsuario;let indice=index">
+                    <mat-grid-tile>
+                            <mat-form-field style="width: 100%;">
+                                <input matInput type="number" [name]="'numero'+indice" [(ngModel)]="intento.numero" [placeholder]="(indice+1)+'° Número'">
+                            </mat-form-field>
+                        </mat-grid-tile>
+                    </div>
+                </mat-grid-list>
+                <button mat-flat-button (click)="Verificar()" color="primary">Verificar</button>
+            </mat-card>
+        </div>
+    </div>        
 </div>
