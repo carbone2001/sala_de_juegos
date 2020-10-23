@@ -16,6 +16,9 @@
         <span>Cerrar Sesion</span>
       </button>
     </mat-menu>
+    <button (click)="backClicked()" *ngIf="botones" mat-icon-button>
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
     <button *ngIf="botones" mat-icon-button routerLink="" class="example-icon">
         <mat-icon primary>house</mat-icon>
     </button>

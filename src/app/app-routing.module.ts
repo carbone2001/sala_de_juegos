@@ -1,6 +1,5 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuComponent } from './componentes/menu/menu.component';
 import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
 import { ListaJuegosComponent } from './componentes/lista-juegos/lista-juegos.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
