@@ -1,6 +1,7 @@
 
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 @Component({
   selector: 'app-piedra-papel-tijera',
   templateUrl: './piedra-papel-tijera.component.html',
@@ -8,7 +9,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class PiedraPapelTijeraComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    public estadisticas: EstadisticasService
+    ) { }
 
   //Animaciones
   imgSize = 400 // (%)
@@ -19,7 +23,9 @@ export class PiedraPapelTijeraComponent implements OnInit {
 
   ngOnInit(): void {
     this.AnimacionDeInicio();
+    this.estadisticas.ObtenerEstadisticasUsuario('piedraPapelTijera');
   }
+
 
   AnimacionDeInicio()
   {
@@ -40,6 +46,8 @@ export class PiedraPapelTijeraComponent implements OnInit {
     var opcionesPosible = ['piedra', 'papel', 'tijera'];
     var indiceAleatorio: number = Math.round(Math.random() * (2 - 0) + 0);
     if (opcionUsuario == opcionesPosible[indiceAleatorio]) {
+      this.estadisticas.usuario.ppt.puntuacion += 1;
+      this.estadisticas.CargarEstadisticasUsuario('piedraPapelTijera',this.estadisticas.usuario.ppt.puntuacion);
       this.OpenDialog("Partida ganada", "Felicidades!");
     }
     else {

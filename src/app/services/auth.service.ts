@@ -15,6 +15,11 @@ export class AuthService {
     return await this.auth.signInWithEmailAndPassword(correo,clave);
   }
 
+  async CrearUsuario(correo,clave)
+  {
+    return await this.auth.createUserWithEmailAndPassword(correo,clave);
+  }
+
   async UsuarioLogeado()
   {
     return await this.auth.currentUser;

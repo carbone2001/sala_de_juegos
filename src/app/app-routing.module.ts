@@ -11,14 +11,25 @@ import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { JuegoAlumnoComponent } from './componentes/juego-alumno/juego-alumno.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { AutenticacionGuard } from './guards/autenticacion.guard';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.component';
 const routes: Routes = [
   {
     path:"login",
     component:LoginComponent
   },
   {
+    path:"registro",
+    component:RegistroComponent
+  },
+  {
     path:"listaJuegos",
     component:ListaJuegosComponent,
+    canActivate:[AutenticacionGuard]
+  },
+  {
+    path:"estadisticas",
+    component:EstadisticasComponent,
     canActivate:[AutenticacionGuard]
   },
   {

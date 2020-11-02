@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
   selector: 'app-adivina-numero',
@@ -9,7 +10,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class AdivinaNumeroComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public estadisticas: EstadisticasService
   ) { }
   numeroIngresado;
   //Animaciones
@@ -19,6 +21,7 @@ export class AdivinaNumeroComponent implements OnInit {
 
   ngOnInit(): void {
     this.AnimacionDeInicio();
+    this.estadisticas.ObtenerEstadisticasUsuario('adivinaNumero');
   }
 
   AnimacionDeInicio()
@@ -42,6 +45,8 @@ export class AdivinaNumeroComponent implements OnInit {
     var numeroAleatorio: number = Math.round(Math.random() * (10 - 0) + 0);
     if (numeroAleatorio == this.numeroIngresado) {
       this.OpenDialog("Numero correcto!", "Felicidades!");
+      this.estadisticas.usuario.an.puntuacion += 1;
+      this.estadisticas.CargarEstadisticasUsuario('adivinaNumero',this.estadisticas.usuario.an.puntuacion);
     }
     else {
       this.OpenDialog("La respuesta era: " + numeroAleatorio, "Perdiste!");

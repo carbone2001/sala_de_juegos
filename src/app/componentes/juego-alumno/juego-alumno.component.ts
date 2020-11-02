@@ -1,5 +1,9 @@
+import { useAnimation } from '@angular/animations';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Usuario } from 'src/app/clases/usuario';
+import { AuthService } from 'src/app/services/auth.service';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 @Component({
   selector: 'app-juego-alumno',
   templateUrl: './juego-alumno.component.html',
@@ -27,9 +31,22 @@ export class JuegoAlumnoComponent implements OnInit {
 
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private estadisticas:EstadisticasService,
+    private auth:AuthService
   ) {
     this.AnimacionDeInicio();
+
+    this.auth.UsuarioLogeado().then((user)=>{
+      if(user)
+      {
+        this.estadisticas.ObtenerEstadisticasUsuario('juegoAlumno');
+      }
+      else
+      {
+        console.log('Error al obtener estadisticas de usuario');
+      }
+    })
    }
 
   AnimacionDeInicio() {
@@ -82,6 +99,9 @@ export class JuegoAlumnoComponent implements OnInit {
       for (let i = 0; i < 5; i++) {
         this.numerosElegidosUsuario.push(JSON.parse('{"numero":""}'))
       }
+      //Guardado de datos en firestore
+      this.estadisticas.CargarEstadisticasUsuario("juegoAlumno",this.puntuacion);
+      
       this.ElegirNumerosComputadora();
       this.aciertos = 0;
       this.puntuacion = 0;

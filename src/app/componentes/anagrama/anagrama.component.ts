@@ -1,12 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 import { ListaJuegosComponent } from '../lista-juegos/lista-juegos.component';
 @Component({
   selector: 'app-anagrama',
   templateUrl: './anagrama.component.html',
   styleUrls: ['./anagrama.component.scss']
 })
-export class AnagramaComponent implements OnInit {
+export class AnagramaComponent implements OnInit,OnDestroy {
   public listaPalabras = [
   "venus",
   "mariposa",
@@ -40,11 +41,19 @@ opacity = 0; // [0-1]
 
 estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity+";background-image: url('assets/fondoAnagrama.png');";
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    public estadisticas:EstadisticasService
+    ) { }
 
   ngOnInit(): void {
     this.ElegirPalabra();
     this.AnimacionDeInicio();
+    this.estadisticas.ObtenerEstadisticasUsuario('anagrama');
+  }
+
+  ngOnDestroy(){
+    this.estadisticas.CargarEstadisticasUsuario('anagrama',this.estadisticas.usuario.anagrama.puntuacion);
   }
 
   AnimacionDeInicio()
@@ -98,7 +107,9 @@ estilosAnimaciones = "background-size: "+this.imgSize+"%;opacity: "+this.opacity
     if(this.palabraRespuesta == this.palabraIngresada)
     {
       this.OpenDialog("Respuesta correcta!","Felicidades!");
+      this.estadisticas.usuario.anagrama.puntuacion++;
       this.ElegirPalabra();
+      this.palabraIngresada = "";
     }
     else
     {

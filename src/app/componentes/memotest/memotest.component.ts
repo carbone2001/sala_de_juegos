@@ -2,6 +2,7 @@ import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_c
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
   selector: 'app-memotest',
@@ -16,7 +17,8 @@ export class MemotestComponent implements OnInit {
   estilosAnimaciones = "background-size: " + this.imgSize + "%;opacity: " + this.opacity + ";background-image: url('assets/imagenMemotest.jpg');";
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public estadisticas: EstadisticasService
   ) {
     this.AnimacionDeInicio();
    }
@@ -55,6 +57,7 @@ export class MemotestComponent implements OnInit {
 
   ngOnInit(): void {
     this.AsignarIconos();
+    this.estadisticas.ObtenerEstadisticasUsuario('memotest');
   }
 
   AnimacionDeInicio()
@@ -131,6 +134,8 @@ export class MemotestComponent implements OnInit {
         return posicion.visible != true;
       })
       if (opcionesDisponibles.length == 0) {
+        this.estadisticas.usuario.memotest.puntuacion += 1;
+        this.estadisticas.CargarEstadisticasUsuario('memotest',this.estadisticas.usuario.memotest.puntuacion)
         this.OpenDialog("partida ganada!", "Felicidades!");
         this.ReiniciarJuego();
       }

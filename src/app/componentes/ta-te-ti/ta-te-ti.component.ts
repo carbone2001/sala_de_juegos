@@ -2,6 +2,7 @@ import { ɵBrowserPlatformLocation } from '@angular/common';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
   selector: 'app-ta-te-ti',
@@ -11,7 +12,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class TaTeTiComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public estadisticas: EstadisticasService
   ) { }
   filaA = { 1: "", 2: "", 3: "" };
   filaB = ["", "", ""];
@@ -22,7 +24,6 @@ export class TaTeTiComponent implements OnInit {
   opacity = 0; // [0-1]
   estilosAnimaciones = "background-size: " + this.imgSize + "%;opacity: " + this.opacity + ";background-image: url('assets/imagenTateti.jpg');";
 
-  //True = opcion disponible
   OpcionesDisponibles = [
     { nombre: "A1", disponible: true, marca: "" },
     { nombre: "A2", disponible: true, marca: "" },
@@ -35,17 +36,6 @@ export class TaTeTiComponent implements OnInit {
     { nombre: "C3", disponible: true, marca: "" }
   ];
 
-  /*OpcionesDisponibles = [
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true
-  ];*/
 
   OpcionesElegidasComputadora = [];
   OpcionesElegidasUsuario = [];
@@ -63,6 +53,7 @@ export class TaTeTiComponent implements OnInit {
 
   ngOnInit(): void {
     this.AnimacionDeInicio();
+    this.estadisticas.ObtenerEstadisticasUsuario('tateti');
   }
 
   AnimacionDeInicio()
@@ -120,6 +111,8 @@ export class TaTeTiComponent implements OnInit {
             console.log(this.OpcionesElegidasUsuario);
             this.OpenDialog("Partida ganada!!", "Felicidades!");
             estadoPartida = 'ganada';
+            this.estadisticas.usuario.tateti.puntuacion += 1;
+            this.estadisticas.CargarEstadisticasUsuario('tateti',this.estadisticas.usuario.tateti.puntuacion);
             this.ReiniciarJuego();
             break;
           } else if (variablesEncontradas < 3) {

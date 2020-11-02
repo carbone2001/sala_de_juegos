@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
   selector: 'app-agilidad-aritmetica',
@@ -9,7 +10,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class AgilidadAritmeticaComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public estadisticas: EstadisticasService
   ) { }
   operadores = [
     '+',
@@ -30,8 +32,8 @@ export class AgilidadAritmeticaComponent implements OnInit {
   estilosAnimaciones = "background-size: " + this.imgSize + "%;opacity: " + this.opacity + ";background-image: url('assets/imagenAgilidadAritmetica.jpg');";
 
   ngOnInit(): void {
-    //this.CrearOperacion();
     this.AnimacionDeInicio();
+    this.estadisticas.ObtenerEstadisticasUsuario('agilidadAritmetica');
   }
 
   AnimacionDeInicio()
@@ -79,6 +81,8 @@ export class AgilidadAritmeticaComponent implements OnInit {
   VerificarNumero() {
     if (this.numeroIngresado == this.respuesta) {
       this.OpenDialog("Respuesta correcta.", "Felicidades!");
+      this.estadisticas.usuario.aa.puntuacion += 1;
+      this.estadisticas.CargarEstadisticasUsuario('agilidadAritmetica',this.estadisticas.usuario.aa.puntuacion);
     }
     else {
       this.OpenDialog("La respuesta es: " + this.respuesta, "Incorrecto!");

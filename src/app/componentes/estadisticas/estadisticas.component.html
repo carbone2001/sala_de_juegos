@@ -1,0 +1,139 @@
+<body class="fondo">
+    <mat-grid-list style="background-color: rgb(78, 78, 78);" [cols]="breakpoint" [rowHeight]="alturaColumnas" (window:resize)="onResize($event)">
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-title>
+                    <h1><b>Anagrama</b></h1>
+                </mat-card-title>
+                <mat-card-content>
+                    <div *ngFor="let p of anagrama; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.anagrama" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.anagrama.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-header >
+                    <h1><b>Piedra, Papel, Tijera</b></h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let p of ppt; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.ppt" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.ppt.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-header >
+                    <h1><b>Agilidad Aritmetica</b></h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let p of aa; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.aa" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.aa.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-header >
+                    <h1><b>Adivina Número</b></h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let p of an; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.an" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.an.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-header >
+                    <h1><b>TaTeTi</b></h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let p of tateti; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.tateti" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.tateti.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-header >
+                    <h1><b>Memotest</b></h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let p of memotest; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.memotest" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.memotest.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+            <mat-card class="card">
+                <mat-card-header >
+                    <h1><b>Juego del Alumno</b></h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let p of juegoAlumno; let indice=index;">
+                        <label>
+                            <b>{{indice+1}} puesto | Usuario: {{p.usuario}} | Puntuacion: {{p.puntuacion}}</b>
+                        </label>
+                        <mat-progress-bar class="bar-progress"  mode="determinate" value="{{p.porcentaje}}"></mat-progress-bar>
+                        <br>
+                    </div>
+                    <div class="puntuacionPersonal" *ngIf="estadisticas.usuario.ja" align="center">
+                        <h3>Puntuacion Personal : {{estadisticas.usuario.ja.puntuacion}}</h3>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</body>

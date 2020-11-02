@@ -27,7 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './componentes/login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.component';
 //import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { environment } from 'src/environments/environment';
     MemotestComponent,
     JuegoAlumnoComponent,
     DialogAlert,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,8 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     MatInputModule,
     MatDialogModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatProgressBarModule
   ],
   providers: [
     {provide: LocationStrategy, useClass:HashLocationStrategy}

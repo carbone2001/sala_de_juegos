@@ -18,6 +18,17 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.auth.UsuarioLogeado().then(user=>{
+      
+      if(user != null &&  user.uid ==  localStorage.getItem("usuarioLogeado"))
+      {
+        this.router.navigateByUrl('/listaJuegos');
+      }
+      else
+      {
+        console.log('No se pudo encontrar al usuario: ',user);
+      }
+    })
   }
 
   Verificar()
@@ -27,6 +38,7 @@ export class LoginComponent implements OnInit {
       this.auth.Login(this.correo,this.clave).then((user)=>{
         if(user)
         {
+          localStorage.setItem("usuarioLogeado",user.user.uid);
           this.router.navigateByUrl('/listaJuegos');
         }
         else
@@ -40,5 +52,7 @@ export class LoginComponent implements OnInit {
       alert('Inicio de sesion erroneo');
     }
   }
+
+
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import {Location} from '@angular/common';
+import { identifierModuleUrl } from '@angular/compiler';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -14,7 +15,11 @@ export class MenuComponent implements OnInit {
     private router:Router,
     private _location: Location,
   ) { }
-  botones;
+  botones = {
+    back:true,
+    home:true,
+    opciones:true
+  };
 
   ngOnInit(): void {
     /*console.log(this._location.path(true));
@@ -24,15 +29,37 @@ export class MenuComponent implements OnInit {
     }*/
 
     this.router.events.subscribe((events:any)=>{
-      //console.log(events);
-      if(events.url == "/login")
+      //console.log(events.url);
+      if(events.url == "/login" && events.url != undefined)
       {
         //console.log(this._location.path(true), "Prender botones");
-        this.botones = false;
+        this.botones.back = false;
+        this.botones.home = false;
+        this.botones.opciones = false;
       }
-      else if(events.url != "/login" && events.url != undefined){
+      else if(events.url == "/registro"){
         //console.log(this._location.path(true),"Quitar botones");
-        this.botones = true;
+        this.botones.back = true;
+        this.botones.home = false;
+        this.botones.opciones = false;
+      }
+      else if(events.url == "/listaJuegos")
+      {
+        this.botones.back = false;
+        this.botones.home = false;
+        this.botones.opciones = true;
+      }
+      else if(events.url == "/acercaDe" && events.url != undefined)
+      {
+        this.botones.back = true;
+        this.botones.home = false;
+        this.botones.opciones = true;
+      }
+      else if(events.url != undefined)
+      {
+        this.botones.back = true;
+        this.botones.home = false;
+        this.botones.opciones = true;
       }
     });
 
