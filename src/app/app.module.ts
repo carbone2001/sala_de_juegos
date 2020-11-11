@@ -21,7 +21,7 @@ import { AdivinaNumeroComponent } from './componentes/adivina-numero/adivina-num
 import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { JuegoAlumnoComponent } from './componentes/juego-alumno/juego-alumno.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatTextareaAutosize } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './componentes/login/login.component';
@@ -64,7 +64,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
     MatInputModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    MatProgressBarModule
+    MatProgressBarModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: LocationStrategy, useClass:HashLocationStrategy}

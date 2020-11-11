@@ -6,20 +6,29 @@
             <h2>Iniciar Sesión</h2>
         </mat-card-header>
         <mat-card-content>
-            <form class="example-form">
+            <form [formGroup]="profileForm" class="example-form">
                 <mat-form-field class="example-full-width">
-                  <mat-label>Correo</mat-label>
-                  <input matInput name="correo" type="email" placeholder="Ingrese correo" [(ngModel)]="correo">
+                    <mat-label>Correo</mat-label>
+                    <input formControlName="correo" matInput name="correo" type="email" placeholder="Ingrese correo"
+                        [(ngModel)]="correo">
                 </mat-form-field>
+                <br>
+                <b style="color:rgb(165, 0, 0);" *ngIf="!profileForm.controls.correo.valid">Correo Inválido</b>
                 <br>
                 <mat-form-field class="example-full-width">
                     <mat-label>Clave</mat-label>
-                    <input matInput name="clave" type="password" placeholder="Ingrese clave" [(ngModel)]="clave">
-                  </mat-form-field>
-              </form>
-              <br>
-              <button mat-raised-button color="primary" style="width: 120px;" (click)="Verificar()">Ingresar</button>
-              <button mat-raised-button color="secondary" style="width: 120px;" routerLink="/registro">Registrarse</button>
+                    <input formControlName="clave" matInput name="clave" type="password" placeholder="Ingrese clave"
+                        [(ngModel)]="clave">
+                </mat-form-field>
+                <br>
+                <b style="color:rgb(156, 0, 0);" *ngIf="!profileForm.controls.clave.valid">
+                    Clave Inválida
+                </b>
+            </form>
+            <br>
+            <button mat-raised-button color="primary" [disabled]="!profileForm.valid" style="width: 120px;" (click)="Verificar()">Ingresar</button>
+            <button mat-raised-button color="secondary" style="width: 120px;"
+                routerLink="/registro">Registrarse</button>
         </mat-card-content>
     </mat-card>
 </div>

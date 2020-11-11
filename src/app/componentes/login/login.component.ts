@@ -1,6 +1,7 @@
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthService} from  '../../services/auth.service';
 @Component({
@@ -12,12 +13,27 @@ export class LoginComponent implements OnInit {
 
   correo = "asd@asd.com";
   clave = "asdasd";
+  profileForm;
   constructor(
     private auth:AuthService,
     private router:Router,
+    private fb:FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.profileForm = this.fb.group({
+      correo:["",Validators.compose([
+        Validators.email,
+        Validators.required
+      ])],
+      clave:["", Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(6)
+      ])]
+    })
+
+
     this.auth.UsuarioLogeado().then(user=>{
       
       if(user != null &&  user.uid ==  localStorage.getItem("usuarioLogeado"))

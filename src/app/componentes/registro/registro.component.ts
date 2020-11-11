@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,13 +14,26 @@ export class RegistroComponent implements OnInit {
 
   correo = "";
   clave = "";
+  profileForm;
   constructor(
     private auth:AuthService,
     private router:Router,
-    private estadisticas:EstadisticasService
+    private estadisticas:EstadisticasService,
+    public fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.profileForm = this.fb.group({
+      correo:["",Validators.compose([
+        Validators.email,
+        Validators.required
+      ])],
+      clave:["", Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(6)
+      ])]
+    })
 
   }
 
